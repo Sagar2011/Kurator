@@ -1,0 +1,44 @@
+HELP.md
+.mvn/
+target/
+m2/
+.metadata/
+.classpath
+bin/
+.settings/
+.project
+
+.history/
+
+mvnw
+lib/
+mvnw.cmd
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+.attach?
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+### Dependencies ###
+**/m2
+### Intellij IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+### VS Code ###
+/.metadata/
+.vscode/
+kuratorMongoDB/
+kuratorSemanticLibrary/
+
+### Custom Ignores ###
+kuratorWebApp/src/main/resources/static/

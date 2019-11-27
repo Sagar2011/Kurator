@@ -1,0 +1,16 @@
+<section fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+    <mat-card class="following-card" *ngFor="let follow of userFollowing">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': 'url('+follow.avatarURL+')' , 'background-size': 'cover'}"></div>
+            <mat-card-title>{{follow.firstName}} {{follow.lastName}}</mat-card-title>
+            <mat-card-subtitle>{{follow.email}}</mat-card-subtitle>
+            <div mat-dialog-actions align="right">
+                <button mat-raised-button color="primary" (click)="onUnFollowUser(follow.userName)">Unfollow</button>
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <!-- Software Devepoler at Krator pvt ltd -->
+        </mat-card-content>
+
+    </mat-card>
+</section>

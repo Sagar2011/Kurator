@@ -1,0 +1,13 @@
+
+body,
+html {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+}
+
+button,
+a,
+i,mat-icon {
+    cursor: pointer;
+}

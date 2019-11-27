@@ -1,0 +1,16 @@
+
+table {
+  width: 100%;
+}
+.doughnut{
+   text-align: center;
+
+}
+.chartwithgraph{
+  margin-top: 10 px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+

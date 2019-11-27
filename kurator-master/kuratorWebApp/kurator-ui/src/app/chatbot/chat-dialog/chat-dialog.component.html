@@ -1,0 +1,27 @@
+<div class="kuratorBot">
+    
+    <div align="right">
+        <mat-icon color="accent" (click)="close()">clear</mat-icon>
+    </div>
+    <h1>Kurator Bot</h1>
+</div>
+<div class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+
+    <ng-container *ngFor="let message of messages | async">
+
+        <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
+                                            'to':   message.sentBy === 'user' }">
+            {{ message.content }}
+        </div>
+
+    </ng-container>
+</div>
+
+<label for="nameField">Your Message </label>
+
+<mat-form-field>
+    <input matInput [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
+</mat-form-field>
+<button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="sendMessage()">
+    <mat-icon color="accent">send</mat-icon>
+</button>

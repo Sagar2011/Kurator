@@ -1,0 +1,18 @@
+
+<mat-toolbar style="position: sticky;top:0;z-index: 100;">
+        <mat-toolbar-row fxLayout="row " fxLayoutAlign="space-between center">
+    
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>
+                   My Playlist
+                </div>
+            </div>
+    
+        </mat-toolbar-row>
+    </mat-toolbar>
+<div fxLayout="row wrap" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+    
+    <div *ngFor="let result of docList">
+        <app-cards [dataDocs]="result" [favStatus]="favStatus"></app-cards>
+    </div>
+</div>

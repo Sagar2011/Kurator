@@ -1,0 +1,32 @@
+<!-- for desktop view of playlist tabs -->
+<mat-toolbar style="position: sticky;top:0;z-index: 100;">
+    <mat-toolbar-row fxLayout="row " fxLayoutAlign="space-between center">
+
+        <div fxLayout="row " fxLayoutAlign="space-between center">
+            <div>
+                Track User Activity
+            </div>
+        </div>
+
+    </mat-toolbar-row>
+</mat-toolbar>
+<div>
+    <div fxLayout="row" fxLayoutAlign="center center" >
+    <div align="center" style="margin-top: 1%;">
+        <mat-form-field class="example-full-width">
+            <input #datePicked matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div style="margin-left: 2%;">
+        <button mat-flat-button color="primary" (click)="track(datePicked.value)">Track User Activity</button>
+    </div>
+</div>
+    <div align="center">
+        <div style="display: block ; max-width: 950px; margin-top: 1%;">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" [colors]="chartColors">
+      </canvas>
+        </div>
+    </div>
+</div>

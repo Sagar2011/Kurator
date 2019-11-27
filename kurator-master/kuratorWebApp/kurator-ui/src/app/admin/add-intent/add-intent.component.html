@@ -1,0 +1,54 @@
+
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <a target="_blank">Add Intent</a>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <form [formGroup]="form">
+        <div>
+            <mat-form-field class="form-intent">
+                <input matInput placeholder="Add new intent" formControlName="intent" width="500px">
+            </mat-form-field>
+        </div>
+
+        <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList aria-label="Indicator Term selection" formControlName="terms">
+                <mat-chip *ngFor="let term of terms.value" [selectable]="selectable" [removable]="removable"
+                    (removed)="remove(term)">
+                    {{term}}
+                    <mat-icon matChipRemove (click)="remove(term)">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="New Indicator terms..." [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)">
+
+            </mat-chip-list>
+
+        </mat-form-field>
+
+        <div>
+            <mat-form-field class="example-chip-list">
+                <mat-chip-list #chipList1 aria-label="Counter Indicator Term selection" formControlName="citerms">
+                    <mat-chip *ngFor="let citerm of citerms.value" [selectable]="selectable" [removable]="removable"
+                        (removed)="removeCounter(citerm)">
+                        {{citerm}}
+                        <mat-icon matChipRemove (click)="remove(citerm)">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New Counter Indicator Term..." [matChipInputFor]="chipList1"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="addCounterTerm($event)">
+
+
+
+
+
+                </mat-chip-list>
+            </mat-form-field>
+        </div>
+
+    </form>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+        <button mat-stroked-button color="accent" (click)="onCancel()">Cancel</button>
+        <button mat-flat-button color="primary" (click)="onAddIntent()">Add</button>
+    </div>

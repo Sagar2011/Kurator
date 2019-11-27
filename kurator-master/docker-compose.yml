@@ -1,0 +1,150 @@
+version: '3'
+
+services:
+  kurator-eureka-server:
+    build: ./kuratorDiscoveryServer
+    image: kurator-eureka-server:latest
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+    env_file:
+      - ./docker_env/production/kurator-eureka-server.env
+    restart: always
+
+  kurator-config-server:
+    build: ./kuratorConfigServer
+    image: kurator-config-server:latest
+    restart: on-failure
+    expose:
+       - 8888
+    ports:
+       - 8888:8888
+    env_file:
+      - ./docker_env/production/kurator-config-server.env
+
+  kurator-zuul-server:
+    build: ./kuratorApiGatewayServer
+    image: kurator-zuul-server:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    expose:
+       - 8080
+    ports:
+       - 8080:8080
+    env_file:
+      - ./docker_env/production/kurator-zuul-server.env
+
+  kurator-ui-server:
+    build: ./kuratorWebApp
+    image: kurator-ui-server:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    expose:
+      - 8200
+    ports:
+      - 8200:8200
+    env_file:
+      - ./docker_env/production/kurator-ui-server.env
+
+  kurator-semantic-service:
+    build: ./kuratorSemanticService
+    image: kurator-semantic-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    expose:
+       - 8097
+    ports:
+       - 8097-8150:8097
+    env_file:
+      - ./docker_env/production/kurator-semantic-service.env
+
+  kurator-document-www-service:
+    build:
+      context: ./kuratorDocumentService
+      dockerfile: Dockerfile_www
+    image: kurator-document-www-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    expose:
+      - 8001
+    ports:
+      - 8001:8001
+    env_file:
+      - ./docker_env/production/kurator-document-www-server.env
+
+  kurator-firewall-service:
+    build:
+      context: ./kuratorDocumentService
+      dockerfile: Dockerfile_firewall
+    image: kurator-firewall-service
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    env_file:
+      - ./docker_env/production/kurator-firewall-server.env
+
+  kurator-user-management-service:
+    build: ./kuratorUserManagement
+    image: kurator-user-management-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    expose:
+      - 8515
+    ports:
+      - 8515:8515
+    env_file:
+      - ./docker_env/production/kurator-user-management-service.env
+
+  kurator-analyzer-service:
+    build:
+      context: ./kuratorIndexingService
+      dockerfile: Dockerfile_analyzer
+    image: kurator-analyzer-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    env_file:
+      - ./docker_env/production/kurator-analyzer-server.env
+
+  kurator-www-service:
+    build:
+      context: ./kuratorIndexingService
+      dockerfile: Dockerfile_www
+    image: kurator-www-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    expose:
+      - 9500
+    ports:
+      - 9500:9500
+    env_file:
+      - ./docker_env/production/kurator-www-server.env
+
+  kurator-crawler-service:
+    build:
+      context: ./kuratorIndexingService
+      dockerfile: Dockerfile_crawler
+    image: kurator-crawler-service
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    env_file:
+      - ./docker_env/production/kurator-crawler-server.env
+
+  kurator-intent-mapper-service:
+    build:
+      context: ./kuratorIndexingService
+      dockerfile: Dockerfile_intent_mapper
+    image: kurator-intent-mapper-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    env_file:
+      - ./docker_env/production/kurator-intent-mapper-server.env

@@ -1,0 +1,83 @@
+/* for header */
+
+.heading {
+    background: url("https://i.ibb.co/K6mQPj6/adult-3368246.jpg"),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    padding-top: 10%;
+    z-index: -1;
+    height: 100vh;
+    background-size: cover;
+}
+
+
+.about {
+    padding-bottom: 20px;
+}
+
+.mat-display-1 {
+    text-align: center;
+    
+    color: rgb(248, 245, 245);
+   
+}
+.form{
+    text-align: center;
+  
+    color: rgb(248, 245, 245);
+    padding-top:2%;
+    
+}
+
+
+
+mat-form-field {
+    width: 50%;
+    color: whitesmoke;
+    
+}
+::placeholder{
+    color:white;
+}
+
+
+/* for footer of the landing page */
+
+.navbar-footer-row-1 {
+    justify-content: center;
+}
+
+.mat-about {
+    max-width: 250px;
+    max-height: 550px;
+    /* padding: 15px; */
+}
+
+section{
+    background: rgba(0,255,0,0.05);
+    padding: 5px 30px;
+    margin-top: 15px;
+}
+
+
+img{
+    border-radius: 50%;
+    width:12em;
+    height:12em;
+    padding-top:30%;
+    padding-bottom: 20%;
+}
+.search{
+    height:20px;
+    width:20px;
+}
+ .mat-form-field-wrapper {
+    opacity: 0.8;  
+}
+.mat-input-element{
+    height:55px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-flex {
+    align-items: center;
+}

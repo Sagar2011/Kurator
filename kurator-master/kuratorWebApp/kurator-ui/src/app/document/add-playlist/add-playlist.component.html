@@ -1,0 +1,23 @@
+<div fxLayout="column" fxLayoutAlign="space-evenly">
+    <mat-toolbar style="position: sticky;top:0;z-index: 100;">
+        <mat-toolbar-row fxLayout="row " fxLayoutAlign="space-between center">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-icon>playlist_add</mat-icon>
+                <div>
+                    Add to playlist
+                </div>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+   
+    <mat-selection-list>
+        <mat-list-option class="example-card" *ngFor="let play of playlist" (click)="playlistArray(play.playlistName)">
+            {{play.playlistName}}
+        </mat-list-option>
+    </mat-selection-list>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+        <button mat-raised-button (click)="onNoClick()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="addToPlaylist()">Save</button>
+    </div>
+
+</div>

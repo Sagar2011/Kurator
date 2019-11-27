@@ -1,0 +1,20 @@
+<h1 align="center" mat-dialog-title>Choose Topics to Follow</h1>
+<p align="center" mat-dialog-subtitle>(atleast choose 3 topics)</p>
+<mat-dialog-content align="center">
+    <div fxLayout="row wrap" fxLayoutAlign="center center">
+        <mat-chip-list aria-label="Fish selection">
+            <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap.xs="0" fxLayout.xs="column">
+                <div *ngFor="let concept of concepts; let i=index" fxFlex="50%">
+                    <mat-chip selected [color]="getColors(i)" (click)="follow(concept,i)" class="chips">
+                        {{concept}}
+                        <mat-icon *ngIf="getColors(i) == 'accent'">check</mat-icon>
+                    </mat-chip>
+                </div>
+            </div>
+        </mat-chip-list>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="accent" [disabled]="status" (click)="submit()" tabindex="1">Follow</button>
+    <button mat-raised-button color="warn" [disabled]="closeStatus" (click)="close()" tabindex="1">Close</button>
+</mat-dialog-actions>

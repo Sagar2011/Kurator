@@ -1,0 +1,81 @@
+<!-- <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="0" class="chartwithgraph">
+    <div fxFlex="550px">
+        <!-- <mat-button-toggle-group #group="matButtonToggleGroup" class="documentbutton">
+            <mat-button-toggle (click)="documents()" aria-label="Document">
+                <mat-label>Documents/Day</mat-label>
+            </mat-button-toggle>
+            <mat-button-toggle (click)="users()" aria-label="User">
+                <mat-label>New Users/Day</mat-label>
+            </mat-button-toggle>
+        </mat-button-toggle-group> -->
+        <mat-toolbar  class="mat-button-toggle">
+            <mat-button-toggle-group #group="matButtonToggleGroup" >
+                <mat-toolbar-row>
+                    <mat-button-toggle (click)=" documents()" aria-label="Document">
+                        <mat-label>Documents/Day</mat-label>
+                    </mat-button-toggle>
+                    <mat-button-toggle (click)="users()"  aria-label="User">
+                        <mat-label>New Users/Day</mat-label>
+                    </mat-button-toggle>
+
+                </mat-toolbar-row>
+            </mat-button-toggle-group>
+        </mat-toolbar>
+        <div class="graph" *ngIf='value'>
+            <ejs-heatmap class="graph" [dataSource]='dataSource1' [xAxis]='xAxis' [yAxis]='yAxis'></ejs-heatmap>
+        </div>
+        <div class="graph" *ngIf='!value'>
+            <ejs-heatmap class="graph" [dataSource]='dataSource2' [xAxis]='xAxis' [yAxis]='yAxis'></ejs-heatmap>
+        </div>
+    </div>
+    <div style="display: block" fxFlex="450px" class="doughnut">
+        <h4>MOST SEARCHED CONCEPTS</h4>
+        <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+            [colors]="chartColors" [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+        </canvas>
+    </div>
+
+</div>
+
+
+
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+    <h4>USERS FLAGGED</h4>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- JoinedDate Column -->
+        <ng-container matColumnDef="joinDate">
+            <th mat-header-cell *matHeaderCellDef> JoinedDate </th>
+            <td mat-cell *matCellDef="let element"> {{element.joinDate}} </td>
+        </ng-container>
+
+        <!-- DocumentsFlagged Column -->
+        <ng-container matColumnDef="flaggedDocuments">
+            <th mat-header-cell *matHeaderCellDef> DocumentsFlagged </th>
+            <td mat-cell *matCellDef="let element"> {{element.flaggedDocuments}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" cl>
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-flat-button color="primary">Block</button>
+            </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef> Details </th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-flat-button color="primary">Details</button>
+            </td>
+        </ng-container> -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div> -->

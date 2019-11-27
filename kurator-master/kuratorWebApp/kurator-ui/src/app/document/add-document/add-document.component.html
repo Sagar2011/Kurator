@@ -1,0 +1,33 @@
+<div class="dialog-form">
+    <form class="dialog-form" [formGroup]="uploaddoc" (ngSubmit)="onAdd()">
+        <mat-form-field>
+            <mat-label>URL</mat-label>
+            <input matInput formControlName="url" placeholder="Enter Url">
+
+        </mat-form-field>
+        <!-- <h5 align="center">or</h5>
+        <input type="file" (change)="onFileSelected($event)"> -->
+        <!-- for chips -->
+        <mat-form-field formControlName="conceptTags" class="example-chip-list">
+            <mat-chip-list #chipList aria-label="Fruit selection">
+                <mat-chip *ngFor="let fruit of termTags" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+                    {{fruit}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Topics..." #termTagsInput [formControl]="topicCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let fruit of filteredtopics | async" [value]="fruit">
+                    {{fruit}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <!-- visibility -->
+        <mat-slide-toggle (click)="onSlide()">Make Document private</mat-slide-toggle>
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+            <button mat-raised-button (click)="onNoClick()">Cancel</button>
+            <button mat-raised-button color="primary">Add</button>
+        </div>
+        <p class="msg_success">{{ msg }}</p>
+    </form>
+</div>

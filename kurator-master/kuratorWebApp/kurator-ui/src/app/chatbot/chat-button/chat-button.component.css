@@ -1,0 +1,16 @@
+button {
+    position: sticky;
+}
+
+.mat-icon.mat-primary {
+color: white;
+}
+
+.chat-fab-button {
+    position: fixed;
+    bottom: 60px;
+    right: 50px;
+    z-index: 100;
+    width:65px;
+    height:65px;
+}

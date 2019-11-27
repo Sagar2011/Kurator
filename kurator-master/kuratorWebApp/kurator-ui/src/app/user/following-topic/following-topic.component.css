@@ -1,0 +1,32 @@
+/* mat-card {
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    display: block;
+    position: relative;
+    padding: 16px;
+    border-radius: 4px;
+    margin: 50px auto;
+}
+
+.mat-card-title {
+    place-content: center;
+    align-items: center;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    margin: 0 auto;
+} */
+
+h1 {
+    /* font-family: 'DM Serif Text', serif; */
+    font-size: 28px;
+}
+
+.example-header-image {
+    background-image: url('https://cdn5.vectorstock.com/i/1000x1000/51/99/icon-of-user-avatar-for-web-site-or-mobile-app-vector-3125199.jpg');
+    background-size: 'cover';
+}
+
+mat-chip {
+    width: 200px;
+    font-size: 18px;
+}

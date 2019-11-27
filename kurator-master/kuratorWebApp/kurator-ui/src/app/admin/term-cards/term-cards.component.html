@@ -1,0 +1,61 @@
+<!-- admin view for managing intent-->
+<mat-accordion class="intent-panel">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title style="font-size:25px;">
+                {{intent}}
+            </mat-panel-title>
+            <!-- <mat-panel-description>
+                Definition
+            </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+            <div fxLayout="column" fxLayoutAlign="space-around start" fxLayoutGap="50px">
+                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="200px">
+                    <div style="font-size:20px;">
+                        Indicator
+                    </div>
+                    <div fxLayoutAlign="end end">
+                        <mat-icon matTooltip="Edit Indicator Terms" (click)="onEditIndicatorTerm()">edit</mat-icon>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center end">
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                        <mat-chip avatar="<mat-chip-avatar>" *ngFor="let fruit of terms" [selectable]="selectable" [removable]="removable">
+                            {{fruit}}
+                            <mat-icon matChipRemove (click)="removeiterm(fruit)">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                </div>
+            </div>
+            <mat-list>
+                <mat-divider [vertical]="true" style="height:100px">
+                </mat-divider>
+            </mat-list>
+            <div fxLayout="column" fxLayoutAlign="space-around start" fxLayoutGap="50px">
+                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="200px">
+                    <div style="font-size:20px;">
+                        Counter Indicator
+                    </div>
+                    <div fxLayoutAlign="end end">
+                        <mat-icon matTooltip="Edit counter Terms" (click)="onEditCounterIndicatorTerm()">edit</mat-icon>
+                    </div>
+                </div>
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip avatar="<mat-chip-avatar>" *ngFor="let cterm of counterTerms" [selectable]="selectable" [removable]="removable1">
+                        {{cterm}}
+                        <mat-icon matChipRemove (click)="removeciterm(cterm)">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </div>
+            <!-- </mat-grid-tile> -->
+            <!-- </mat-grid-list> -->
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+            <button mat-stroked-button color="accent" (click)="onCancelIntent()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="openDialog()">Save</button>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

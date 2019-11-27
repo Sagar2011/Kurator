@@ -1,0 +1,17 @@
+.dialog-form {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+
+.dialog-form>* {
+    width: 100%;
+}
+
+.dialog-form {
+    margin-bottom: 20px;
+}
+
+.dialog-form>* {
+    margin: 5px 0;
+}

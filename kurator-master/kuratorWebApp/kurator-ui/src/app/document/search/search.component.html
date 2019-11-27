@@ -1,0 +1,18 @@
+<!-- for desktop view of dashboard tabs -->
+<div *ngIf="isWaiting">
+    <mat-progress-spinner></mat-progress-spinner>
+</div>
+
+<div *ngIf="!isWaiting">
+    <h3 align="center"> Showing Results for: <i>{{query}}</i></h3>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around ">
+
+        <div *ngFor="let result of docList">
+
+            <app-cards [dataDocs]="result" [favStatus]="favStatus"></app-cards>
+        </div>
+    </div>
+</div>
+<div *ngIf="docList.length==0" class="message">
+    Document you are looking for does not exist
+</div>

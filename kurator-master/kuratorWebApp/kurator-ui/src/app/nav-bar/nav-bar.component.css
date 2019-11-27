@@ -1,0 +1,67 @@
+/* button {
+    margin-top: -8px;
+} */
+
+a {
+    /* color: white; */
+    padding-right: 1rem;
+}
+
+section {
+    background: rgba(0, 255, 0, 0.05);
+    padding: 5px 30px;
+    margin-top: 15px;
+}
+
+.mat-elevation-z5 {
+    position: relative;
+}
+
+.menubar {
+    cursor: pointer;
+}
+
+mat-drawer-container {
+    width: 100%;
+    height: 100vh;
+    overflow-y: visible;
+}
+
+
+/* .search-bar{
+    width:300%;
+} */
+
+mat-toolbar {
+    padding: 0;
+    box-shadow: 0 5px 2px -2px rgba(0, 0, 0, .2);
+}
+
+.sidenav {
+    width: 233px;
+}
+
+.sidenav mat-icon {
+    margin: 0 20px 0 12px;
+}
+
+.kuratorHeader {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.flex {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+mat-nav-list {
+    width: 100%;
+}
+
+.login-button {
+    border: 1px solid white;
+}

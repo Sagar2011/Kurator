@@ -1,0 +1,14 @@
+.following-card {
+    max-width: 350px;
+    max-height: 400px;
+    margin: 24px
+}
+
+.example-header-image {
+    /* background-image: url('https://image.flaticon.com/icons/svg/21/21294.svg'); */
+    background-size: cover;
+}
+
+material-icons {
+    font-size: 60px;
+}

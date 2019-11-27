@@ -1,0 +1,36 @@
+<div class="dialog-form">
+  <form class="dialog-form" [formGroup]="flagdoc" (ngSubmit)="onFlag()">
+
+    <!-- </mat-form-field>
+    <h4>Why do you want to flag this Document?</h4>
+    <mat-form-field>
+      <mat-select placeholder="Choose a reason">
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    <h4>Why you want to flag this Document?</h4>
+    <mat-form-field>
+      <mat-label>Select a reason</mat-label>
+      <mat-select matInput [(ngModel)]="selectedValue" formControlName="reason" placeholder="Choose a reason" required>
+        <mat-option *ngFor="let reason of reasons" [value]="reason.value">
+          {{reason.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <h5 align="center">or</h5>
+      <input type="file" (change)="onFileSelected($event)"> -->
+    <!-- for chips -->
+    <mat-form-field>
+      <input matInput type="text" formControlName="comment" placeholder="Leave your comment here...">
+    </mat-form-field>
+    <!-- visibility -->
+    <!-- <mat-slide-toggle formControlName="visibility" (click)="onSlide()">Make Document private </mat-slide-toggle> -->
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+      <button mat-raised-button (click)="onNoClick()">Cancel</button>
+      <button mat-raised-button color="primary">Flag</button>
+    </div>
+  </form>
+</div>

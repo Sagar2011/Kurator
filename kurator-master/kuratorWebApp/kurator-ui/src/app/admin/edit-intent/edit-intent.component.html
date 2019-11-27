@@ -1,0 +1,59 @@
+<!-- <mat-toolbar>
+    <mat-toolbar-row>
+        <a target="_blank" href="https://material.angular.io/">Angular Material</a>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <a target="_blank" href="https://www.npmjs.com/package/@angular/flex-layout">Flex-Layout</a>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <a target="_blank" href="https://www.letsboot.com/">Letsboot.com</a>
+    </mat-toolbar-row>
+</mat-toolbar> -->
+<!-- <mat-toolbar>
+    <mat-toolbar-row>
+        <a target="_blank"> Intent </a>
+    </mat-toolbar-row>
+</mat-toolbar> -->
+<div class="example-container">
+    <mat-form-field>
+        <textarea matInput placeholder="Intent">{{ intent }}</textarea>
+    </mat-form-field>
+</div>
+<mat-grid-list cols="1" rowHeight="4:1">
+    <mat-grid-tile>
+        <form [formGroup]="editIntentForm" class="edit-intent">
+            <mat-form-field class="example-chip-list" >
+                <mat-chip-list #chipList aria-label="Indicator Terms selection">
+                    <mat-chip *ngFor="let iterm of iterms" [selectable]="selectable" [removable]="removable"
+                        (removed)="remove(iterm)">
+                        {{iterm.name}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Indicator Terms..." [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="add($event)" formControlName="name" >
+                </mat-chip-list>
+            </mat-form-field>
+        </form>
+
+    </mat-grid-tile>
+</mat-grid-list>
+<div> 
+        <button mat-flat-button color="primary" (click)="onUpdateIntent()">Update Intent</button>
+ </div>
+<!-- <div>
+    <mat-grid-tile>
+        <!-- <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList aria-label="Fruit selection">
+                <mat-chip *ngFor="let iterm of iterms" [selectable]="selectable" [removable]="removable"
+                    (removed)="remove(iterm)">
+                    {{iterm.name}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Counter Indicator Terms..." [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+        </mat-form-field>
+    </mat-grid-tile> 
+    </div> -->

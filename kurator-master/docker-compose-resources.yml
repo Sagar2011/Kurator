@@ -1,0 +1,40 @@
+version: '3'
+services:
+  mongodb:
+    image: 'mongo:latest'
+    restart: always
+    volumes:
+      - '$HOME/mongo_data/kuratorDB:/data/db'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: kurator
+      MONGO_INITDB_ROOT_PASSWORD: KurAt0r
+    ports:
+      - '27017:27017'
+
+  neo4j:
+    image: 'neo4j:latest'
+    restart: always
+    ports:
+      - '7474:7474'
+      - '7473:7473'
+      - '7687:7687'
+    volumes:
+      - '$HOME/neo4j_data/kuratorDB:/data'
+    environment:
+      NEO4J_AUTH: "none"
+      NEO4J_apoc_export_file_enabled: "true"
+      NEO4J_apoc_import_file_enabled: "true"
+      NEO4J_apoc_import_file_use__neo4j__config: "true"
+
+  rabbitmq:
+   image: rabbitmq:management
+   restart: always
+   ports:
+     - "5672:5672"
+     - "15672:15672"
+   volumes:
+      - $HOME/rabbitmq_data/kuratorMQ:/data/db
+   environment:
+     RABBITMQ_DEFAULT_USER: "kurator"
+     RABBITMQ_DEFAULT_PASS: "KurAt0r"
+

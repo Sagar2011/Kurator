@@ -1,0 +1,27 @@
+<mat-toolbar style="position: sticky;top:0;z-index: 100;">
+    <mat-toolbar-row fxLayout="row " fxLayoutAlign="space-between center">
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <!-- <mat-icon>playlist_play</mat-icon> -->
+            <div>
+                Bulk Upload
+            </div>
+            <div *ngIf="spinnerStatus">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+
+    </mat-toolbar-row>
+</mat-toolbar>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+    <!-- <mat-icon>playlist_play</mat-icon> -->
+    <div class="input">
+        <input type="file" (change)="onChange($event.target.files)">
+    </div>
+</div>
+<!-- <h3>Bulk Upload:</h3> -->
+
+<div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+    <button mat-raised-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="uploadurls()">Add</button>
+</div>

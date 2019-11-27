@@ -1,0 +1,20 @@
+<mat-toolbar style="position: sticky;top:0;z-index: 100;">
+    <mat-toolbar-row fxLayout="row " fxLayoutAlign="space-between center">
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-icon>settings_applications</mat-icon>
+            <div>
+                Manage Curation
+            </div>
+        </div>
+
+    </mat-toolbar-row>
+</mat-toolbar>
+<!-- <section fxLayout="row wrap" fxLayoutAlign="center center"> -->
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+
+    <div *ngFor="let result of addedList">
+
+        <app-cards [dataDocs]="result" [favStatus]="favStatus"></app-cards>
+    </div>
+</div>

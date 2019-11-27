@@ -1,0 +1,30 @@
+.dialog-form {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+
+.dialog-form>* {
+    width: 100%;
+}
+
+.dialog-form {
+    margin-bottom: 20px;
+}
+
+.dialog-form>* {
+    margin: 5px 0;
+}
+
+.visibility .mat-radio-button {
+    margin: 0 12px;
+}
+
+.msg_success {
+    text-decoration-color: darkblue;
+    text-decoration-style: double;
+}
+.example-chip-list {
+    width: 100%;
+  }
+

@@ -1,0 +1,30 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+<mat-toolbar>
+    <mat-toolbar-row>
+        <h1 mat-dialog-title>Welcome Guest</h1>
+        <div fxLayout="row wrap" fxLayoutAlign="end center">
+            <div>
+                <mat-icon class="example-icon" aria-hidden="false" aria-label="Example Flag icon" (click)="close()">
+                    cancel
+                </mat-icon>
+            </div>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+</div>
+<div>
+    {{exceptionMessage}}
+</div>
+<div *ngIf="status">
+    {{message}}
+</div>
+<div *ngIf="!status">
+    <h3 align="center">{{totalDocuments}} documents found</h3>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between ">
+
+        <div *ngFor="let result of docList">
+
+            <app-cards [dataDocs]="result" [favStatus]="favStatus"></app-cards>
+        </div>
+    </div>
+</div>

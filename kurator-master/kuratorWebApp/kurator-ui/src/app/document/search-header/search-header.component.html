@@ -1,0 +1,7 @@
+<!-- Search bar  -->
+<div align="left">
+    <mat-form-field [formGroup]="searchForm">
+        <input matInput formControlName="inputQuery" (keyup.enter)="getDocument()">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+</div>

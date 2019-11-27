@@ -1,0 +1,35 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-around center">
+    <mat-toolbar>
+        <mat-toolbar-row fxLayout="row wrap" fxLayoutAlign="space-between center">
+            <div>
+                <h1 mat-dialog-title>{{data.title}}</h1>
+            </div>
+            <!-- <span class="example-spacer"></span> -->
+            <div fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="15px" fxLayoutGap.xs="5px">
+                <div>
+                    <img src="https://img.icons8.com/ios/32/000000/applause.png" (click)="liked()" *ngIf="!showClap">
+                    <img src="https://img.icons8.com/ios-filled/32/000000/applause.png" *ngIf="showClap">
+                </div>
+                <div>
+                    <mat-icon *ngIf="!favStatus" matTooltip="favorite document" (click)="addFavourite(data.documentId)">
+                        favorite_border
+                    </mat-icon>
+                    <mat-icon *ngIf="favStatus" matTooltip="favorite document" (click)="addFavourite(data.documentId)">
+                        favorite
+                    </mat-icon>
+                </div>
+                <div>
+                    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example Flag icon" (click)="flagDocument()">outlined_flag
+                    </mat-icon>
+                </div>
+                <div>
+                    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example Flag icon" (click)="close()">
+                        cancel
+                    </mat-icon>
+                </div>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+<iframe [src]="template" width="100%" height="900" frameborder="0" scrolling="yes" target="_self">
+</iframe>

@@ -1,0 +1,10 @@
+<mat-card class="following-card" fxLayout="row wrap" fxLayoutAlign="space-between center">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{data.username}}</mat-card-title>
+        <!-- <mat-card-subtitle>{{data.username}}</mat-card-subtitle> -->
+        <div>
+            <button mat-raised-button color="primary" (click)="getFollowingUser()">follow</button>
+        </div>
+    </mat-card-header>
+</mat-card>

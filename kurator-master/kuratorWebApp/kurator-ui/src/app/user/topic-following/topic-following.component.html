@@ -1,0 +1,24 @@
+<!-- <mat-card class="following-card">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div fxFlex="40%">
+            <ngx-avatar [name]="concept"></ngx-avatar>
+            <mat-card-title>{{concept}}</mat-card-title>
+        </div>
+        <div fxFlex="60%">
+            <button mat-raised-button color="warn" (click)="unfollowTopic(concept)">unfollow</button>
+        </div>
+    </div>
+</mat-card> -->
+
+<mat-card class="following-card" fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-card-header>
+        <div mat-card-avatar>
+            <ngx-avatar [name]="concept"></ngx-avatar>
+        </div>
+        <mat-card-title>{{concept}}</mat-card-title>
+
+    </mat-card-header>
+    <div>
+        <button mat-raised-button color="warn" (click)="unfollowTopic(concept)">unfollow</button>
+    </div>
+</mat-card>

@@ -1,0 +1,43 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <a target="_blank"> List of Documents</a>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div>
+    <mat-card fxLayout="column" class=example-card *ngFor="let folder of allData">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <mat-card-header>
+                <!-- <mat-icon>more_vert</mat-icon> -->
+                <div mat-card-avatar class="example-header-image"></div>
+                <!-- <mat-icon height="40px" width="40px">folder</mat-icon> -->
+                <mat-card-title class="title">{{folder.title}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-header>
+                <mat-chip color="ascent" selected>{{folder.rating}} points</mat-chip>
+            </mat-card-header>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <div fxFlex="15%">
+                <!-- <mat-card-subtitle class="addedBy">{{folder.addedBy}}</mat-card-subtitle> -->
+                <div class="addedBy" >{{folder.addedBy}}</div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-icon>done</mat-icon>
+                <div>{{folder.addedOn}}</div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center" >
+                <mat-icon>done_all</mat-icon>
+                <div>{{folder.indexedOn}}</div>
+            </div>
+            <div fxFlex="9%">
+                <mat-chip-list>
+                    <mat-chip color="primary" selected>{{folder.intent}}</mat-chip>
+                </mat-chip-list>
+            </div>
+        </div>
+    </mat-card>
+</div>
+<button mat-fab class="addURL-fab-button" (click)="bulkUpload()" color="primary">
+    <mat-icon>add</mat-icon>
+</button>

@@ -1,0 +1,26 @@
+.example-icon {
+    padding: 0 14px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+h1 {
+    max-width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+img {
+    cursor: pointer;
+}
+
+.mat-toolbar.mat-primary {
+    background: #f6f8fa;
+    /* color: #fff; */
+}
+
+
+/* #f6f8fa; */

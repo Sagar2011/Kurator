@@ -1,0 +1,55 @@
+# ----------------------------#
+#        JAVA BUILD           #
+# ----------------------------#
+FROM maven:3.6-jdk-11 AS build
+
+RUN mkdir /app
+
+# Install dependencies of Lib
+RUN mkdir -p /app/library
+
+COPY library/pom.xml /app/library/pom.xml
+
+WORKDIR /app/library/
+
+ENV MVN="mvn -B -s /usr/share/maven/ref/settings-docker.xml"
+RUN $MVN --version
+
+# Expected to download dependencies but not build
+RUN $MVN dependency:go-offline
+
+COPY library/src /app/library/src
+
+# Build and install libs
+RUN $MVN -f pom.xml clean install -DskipTests
+
+#------------------------- LIBS BUILD COMPLETE ---------------------#
+
+WORKDIR /app
+
+# Install dependencies of module
+RUN mkdir -p /app/module
+
+COPY firewall/pom.xml /app/module/
+
+WORKDIR /app/module/
+
+# Expected to download dependencies but not build
+RUN $MVN dependency:go-offline
+
+COPY firewall/src /app/module/src
+
+# Build now
+RUN $MVN -f pom.xml clean package -DskipTests
+
+# -------------------------------#
+#        JAVA Service            #
+# -------------------------------#
+FROM openjdk:11
+
+COPY --from=build /usr/share/maven/ref/repository/com/kurator  /root/.m2/repository/com/kurator
+
+# Copy the built service jars and resources
+COPY --from=build /app/module/target/firewall-0.0.1-SNAPSHOT.jar firewallService.jar
+
+ENTRYPOINT ["java","-jar","firewallService.jar"]

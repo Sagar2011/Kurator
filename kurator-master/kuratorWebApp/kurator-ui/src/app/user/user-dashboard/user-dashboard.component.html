@@ -1,0 +1,104 @@
+<!-- for desktop view of dashboard tabs -->
+<div class="spinner" *ngIf="loaded" fxlayout="column" fxLayoutAlign="center center">
+    <mat-spinner [diameter]="50"></mat-spinner>
+
+
+</div>
+
+<nav mat-tab-nav-bar mat-align-tabs="center">
+    <a mat-tab-link (click)="onTrending()" [ngClass]="trending ? 'success' : 'danger'">
+        <!-- *ngIf="isMobileLayout" -->
+        <mat-icon class="example-tab-icon">trending_up</mat-icon>
+        <p fxHide.xs="true">Trending</p>
+
+    </a>
+    <a mat-tab-link (click)="onRecentlyAdded()" [ngClass]="recentlyAdded ? 'success' : 'danger'">
+        <mat-icon class="example-tab-icon">add</mat-icon>
+        <p fxHide.xs="true">Recently Added</p>
+
+    </a>
+    <a mat-tab-link (click)="onRecentlyViewed()" [ngClass]="recentlyViewed ? 'success' : 'danger'">
+        <mat-icon class="example-tab-icon">remove_red_eye</mat-icon>
+        <p fxHide.xs="true">Recently Viewed</p>
+
+    </a>
+    <a mat-tab-link (click)="onfavorite()" [ngClass]="favorite ? 'success' : 'danger'">
+        <mat-icon class="example-tab-icon" (click)="onfavorite()">favorite_border</mat-icon>
+        <p fxHide.xs="true">Favourites</p>
+        <!-- <app-card [tabsfab]="tabsfab"></app-card> -->
+    </a>
+
+</nav>
+
+
+
+<div *ngIf="trending" class="topic-follow">
+    <!-- <section fxLayout="row wrap" fxLayoutAlign="center center"> -->
+    <!-- cards -->
+    <div class="message" *ngIf="!trendingStatus">
+        Please be patient trending will be available very soon....
+    </div>
+    <div *ngIf="trendingStatus">
+
+        <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+            <div *ngFor="let result of trendingDocList">
+                <app-cards [dataDocs]="result" [favStatus]="favStatus" (messageEvent)="receiveMessage($event)">
+                </app-cards>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--</section>-->
+
+<section *ngIf="recentlyViewed" class="topic-follow">
+    <div class="message" *ngIf="!recentlyViewedStatus">
+        You haven't viewed any documents yet!
+    </div>
+    <!-- <section fxLayout="row wrap" fxLayoutAlign="center center"> -->
+    <!-- cards -->
+    <div *ngIf="recentlyViewedStatus">
+        <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+
+            <div *ngFor="let result of viewList">
+
+                <app-cards [dataDocs]="result" [favStatus]="favStatus" (messageEvent)="receiveMessage($event)">
+                </app-cards>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--</section>-->
+<section *ngIf="recentlyAdded" class="topic-follow">
+    <div class="message" *ngIf="!recentlyAddedStatus">
+        You haven't added any document yet!
+    </div>
+    <!-- <section fxLayout="row wrap" fxLayoutAlign="center center"> -->
+    <div *ngIf="recentlyAddedStatus">
+        <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+            <div *ngFor="let result of addedList">
+                <app-cards [dataDocs]="result" [favStatus]="favStatus"></app-cards>
+            </div>
+        </div>
+    </div>
+    <!-- </section> -->
+</section>
+<section *ngIf="favorite" class="topic-follow">
+    <div class="message" *ngIf="!favoriteStatus">
+        You haven't added any document to favorites!
+    </div>
+    <div *ngIf="favoriteStatus">
+        <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+
+            <div *ngFor="let result of favList">
+
+                <app-cards [dataDocs]="result" [favStatus]="favStatus"></app-cards>
+            </div>
+        </div>
+    </div>
+</section>
+
+<button mat-fab class="addURL-fab-button" (click)="openDialogUpload()" color="primary">
+    <mat-icon>add</mat-icon>
+</button>

@@ -1,0 +1,116 @@
+<!-- <section class="user-profile">
+    <section fxLayout="row">
+        <mat-card class="example-card">
+            <i class="material-icons" (click)="onEdit(profile)">edit</i>
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': userImage , 'background-size': 'cover'}"></div>
+                <mat-card-title>{{profile.firstName}} {{profile.lastName}}</mat-card-title>
+                <mat-card-subtitle>{{profile.email}}</mat-card-subtitle>
+                <div class="about">
+                    <p>{{profile.aboutUser}}</p>
+                </div>
+            </mat-card-header>
+            <mat-card-content>
+                <div mat-dialog-actions>
+                    <button mat-button (click)="onFollowing()" [ngClass]="following ? 'success' : 'danger'">
+                        Following</button>
+                    <button mat-button (click)="onTopicList()" [ngClass]="topics ? 'success' : 'danger'">
+                        Topics</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </section>
+    <section *ngIf="following" class="people-follow">
+        <section>
+            <app-following></app-following>
+        </section>
+    </section>
+    <section *ngIf="topics" class="topic-follow">
+        <section fxLayout="row wrap" fxLayoutAlign="center center">
+            <app-topics></app-topics>
+        </section>
+    </section>
+   
+</section>
+
+<mat-divider></mat-divider>
+<h2 align="center">My Curation</h2>
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+
+    <div *ngFor="let result of trendingDocList">
+
+        <app-cards [dataDocs]="result"></app-cards>
+    </div>
+</div> -->
+
+<!-- new profile -->
+
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" class="profile">
+
+    <mat-divider fxFlex="10%"></mat-divider>
+
+    <div>
+        <!-- HEyy - {{profile.userImage}} -->
+        <img [src]="userImage" class="rank1">
+
+
+    </div>
+
+    <div fxFlex="20%" fxLayout="column">
+        <h3>{{profile.firstName | titlecase}} {{profile.lastName | titlecase}}</h3>
+        {{profile.email}}
+    </div>
+
+    <div fxFlex="50%">
+        <p>{{profile.aboutUser | titlecase}}</p>
+
+    </div> <i class="material-icons" (click)="onEdit(profile)">edit</i>
+    <!-- <div>Manish Kumar</div> -->
+
+
+</div>
+
+<nav mat-tab-nav-bar mat-align-tabs="center">
+    <a mat-tab-link (click)="onTopicList()" [ngClass]="topics ? 'success' : 'danger'">
+        <!-- *ngIf="isMobileLayout" -->
+        <mat-icon class="example-tab-icon">question_answer</mat-icon>
+        <p fxHide.xs="true">Topics</p>
+
+    </a>
+
+    <a mat-tab-link (click)="onFollower()" [ngClass]="follower ? 'success' : 'danger'">
+        <mat-icon>people_alt</mat-icon>
+        <p fxHide.xs="true">Follower</p>
+
+    </a>
+    <a mat-tab-link (click)="onFollowing()" [ngClass]="following ? 'success' : 'danger'">
+        <mat-icon>person_add</mat-icon>
+        <p fxHide.xs="true">Following</p>
+
+    </a>
+</nav>
+
+<section *ngIf="following" class="people-follow">
+
+    <section>
+        <app-following></app-following>
+    </section>
+</section>
+<section *ngIf="follower" class="people-follow">
+    <div class="message">No one is following you yet!</div>
+</section>
+
+<section *ngIf="topics" class="topic-follow">
+    <div class="message" *ngIf="!status">
+        Currently, you are not following any topics... start following some topics
+
+    </div>
+    <div *ngIf="status">
+        <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+            <div *ngFor="let concept of userChoice">
+                <app-topic-following [concept]="concept"></app-topic-following>
+            </div>
+        </div>
+    </div>
+</section>

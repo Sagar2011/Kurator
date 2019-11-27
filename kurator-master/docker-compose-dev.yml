@@ -1,0 +1,199 @@
+version: '3'
+services:
+  neo4j:
+    image: neo4j:latest
+    expose:
+      - 7474
+      - 7687
+    ports:
+      - 7474:7474  #neo4j connection
+      - 7687:7687  #bolt db
+    environment:
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_dbms_shell_enabled=true
+# - NEO4J_AUTH=root:root@123
+    volumes:
+      - $HOME/databases/kuratorSemanticLibrary/data:/data
+      - $HOME/databases/kuratorSemanticLibrary/import:/import
+      - $HOME/databases/kuratorSemanticLibrary/plugins:/plugins
+
+  kurator-eureka-server:
+    build: ./kuratorDiscoveryServer
+    image: kurator-eureka-server:latest
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+    env_file:
+      - ./docker_env/development/kurator-eureka-server.env
+    restart: always
+
+  kurator-config-server:
+    build: ./kuratorConfigServer
+    image: kurator-config-server:latest
+    restart: on-failure
+    expose:
+       - 8888
+    ports:
+       - 8888:8888
+    env_file:
+      - ./docker_env/development/kurator-config-server.env
+
+  kurator-zuul-server:
+    build: ./kuratorApiGatewayServer
+    image: kurator-zuul-server:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    expose:
+       - 8080
+    ports:
+       - 8080:8080
+    env_file:
+      - ./docker_env/development/kurator-zuul-server.env
+
+  kurator-ui-server:
+    build: ./kuratorWebApp
+    image: kurator-ui-server:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    expose:
+      - 8200
+    ports:
+      - 8200:8200
+    env_file:
+      - ./docker_env/development/kurator-ui-server.env
+
+  kurator-semantic-service:
+    build: ./kuratorSemanticService
+    image: kurator-semantic-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      - neo4j
+    expose:
+       - 8097
+    ports:
+       - 8097:8097
+    env_file:
+      - ./docker_env/development/kurator-semantic-service.env
+
+  kurator-firewall-service:
+    build:
+      context: ./kuratorDocumentService
+      dockerfile: Dockerfile_firewall
+    image: kurator-firewall-service
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      - mongo
+      - rabbitmq
+    env_file:
+      - ./docker_env/development/kurator-firewall-server.env
+
+  kurator-document-www-service:
+    build:
+      context: ./kuratorDocumentService
+      dockerfile: Dockerfile_www
+    image: kurator-document-www-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      - mongo
+      - rabbitmq
+    expose:
+      - 8001
+    ports:
+      - 8001:8001
+    env_file:
+      - ./docker_env/development/kurator-document-www-server.env
+
+  kurator-user-management-service:
+    build: ./kuratorUserManagement
+    image: kurator-user-management-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      - mongo
+    expose:
+      - 8515
+    ports:
+      - 8515:8515
+    env_file:
+      - ./docker_env/development/kurator-user-management-service.env
+
+  kurator-analyzer-service:
+    build:
+      context: ./kuratorIndexingService
+      dockerfile: Dockerfile_analyzer
+    image: kurator-analyzer-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      - mongo
+      - rabbitmq
+    env_file:
+      - ./docker_env/development/kurator-indexing-service.env
+
+  kurator-www-service:
+    build:
+      context: ./kuratorIndexingService
+      dockerfile: Dockerfile_www
+    image: kurator-www-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    expose:
+      - 9500
+    ports:
+      - 9500:9500
+    env_file:
+      - ./docker_env/development/kurator-www-server.env
+
+  kurator-crawler-service:
+    build:
+      context: ./kuratorIndexingService
+      dockerfile: Dockerfile_crawler
+    image: kurator-crawler-service
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      - mongo
+      - rabbitmq
+    env_file:
+      - ./docker_env/development/kurator-crawler-server.env
+
+  kurator-intent-mapper-service:
+    build:
+      context: ./kuratorIndexingService
+      dockerfile: Dockerfile_intent_mapper
+    image: kurator-intent-mapper-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      - mongo
+      - rabbitmq
+    env_file:
+      - ./docker_env/development/kurator-intent-mapper-server.env
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - $HOME/databases/kuratorMongoDB/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  rabbitmq:
+    image: rabbitmq:management
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    ports:
+      - "15672:15672"
+      - "5672:5672"

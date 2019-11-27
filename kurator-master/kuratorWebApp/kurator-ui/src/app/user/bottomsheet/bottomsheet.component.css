@@ -1,0 +1,10 @@
+.example-header-image {
+    background-image: url('https://media.pixcove.com/N/8/8/Man-Gentleman-Silhouette-Gray-Free-Illustrations-F-0424.jpg');
+    background-size: 'cover';
+}
+
+.following-card {
+    max-width: 350px;
+    max-height: 400px;
+    margin: 10px;
+}

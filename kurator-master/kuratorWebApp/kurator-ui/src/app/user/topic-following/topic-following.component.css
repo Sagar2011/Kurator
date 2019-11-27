@@ -1,0 +1,9 @@
+.following-card {
+    max-width: 350px;
+    max-height: 400px;
+    margin: 10px;
+}
+
+material-icons {
+    font-size: 60px;
+}

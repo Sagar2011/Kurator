@@ -1,0 +1,38 @@
+a {
+    padding-right: 1rem;
+}
+
+mat-form-field {
+    /* display: inline-block; */
+    /* position: relative; */
+    text-align: left;
+    width: 100%;
+    /* padding: 10px; */
+    /* margin: 10px; */
+}
+
+button {
+    color: white;
+}
+
+i {
+    cursor: pointer;
+}
+
+mat-icon {
+    vertical-align: bottom;
+}
+
+.navbar {
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+}
+
+.avatar {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9VO9Fc41pWEe2iuP-x2blhMLrEddgNczzANsHlP-AjtfoefJM');
+    background-size: cover;
+}
+
+mat-card-subtitle {
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,107 @@
+<!-- header of the web page -->
+<!-- <section *ngIf="show">
+        <div class="flex-container" fxLayout="row wrap" fxLayoutAlign="space-between center">
+    
+            <p>We use cookies and other tracking technologies to improve your browsing experience on our application, to show
+                you personalized content and experience, to analyze our website traffic, and to understand where our
+                visitors are coming from. By browsing our website, you consent to our use of cookies and other tracking
+                technologies.</p>
+            <a mat-raised-button (click)="agree()">I Accept</a>
+        </div>
+    </section> -->
+<div class="heading">
+    <header>
+        <h1 class="mat-display-1">Where Relevancy And Quality Are Assured!</h1>
+        <!-- <h1 class="mat-display-1">Are Assured!</h1> -->
+        <div class="form">
+            <mat-form-field [formGroup]="searchForm" color="primary" appearance="outline">
+                <input autofocus placeholder="Try exploring some content..." matInput formControlName="inputQuery" (keyup.enter)="getDocument()">
+                <!-- <mat-icon class="mat-icon" matSuffix>search</mat-icon> -->
+                <!-- <mat-icon>search</mat-icon> -->
+            </mat-form-field>
+        </div>
+       
+    </header>
+    <!-- <app-chat-button></app-chat-button> -->
+</div>
+
+<!-- about the company -->
+<div style="margin: 50px">
+    <h2 align="center">WHAT IS KURATOR?</h2>
+    <p class="mat-subheading-2 about">Kurator is the Productivity tool for intent driven document search which assures you utmost relevancy.One of the most powerful tool that can be integrated out of the box. It is the place where you collabrate with the people of your group to share
+        and curate knowledge.This is the tool where you are updated automatically with your recent curated documents and the trending ones.
+    </p>
+</div>
+<mat-divider></mat-divider>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" class="parentdiv">
+    <mat-divider fxHide.xs="true" fxFlex="20%"></mat-divider>
+    <div fxLayout="column" fxLayout.xs="column" fxLayoutAlign="space-around center">
+        <img src="https://pineco.de/wp-content/uploads/2018/03/basic-eloquent-search-techniques-cover.png">
+        <div>
+            <h4> SEARCH</h4>
+        </div>
+
+    </div>
+    <mat-divider fxHide.xs="true" fxFlex="20%"></mat-divider>
+    <div>
+        <img src="https://toggl.com/time-management-tips/images/time-management-tips-toggl-91af550b909338184f45a8496aa8ae9a.jpg" class="rank1">
+        <div fxLayout="column" fxLayout.xs="column" fxLayoutAlign="space-around center">
+            <h4>CURATE</h4>
+        </div>
+    </div>
+    <mat-divider fxHide.xs="true" fxFlex="20%"></mat-divider>
+    <div>
+        <img src="https://reboot-wellness.com/wp-content/uploads/2018/03/Collaborate.png">
+        <div fxLayout="column" fxLayout.xs="column" fxLayoutAlign="space-around center">
+            <h4> COLLABORATE</h4>
+        </div>
+    </div>
+    <mat-divider fxHide.xs="true" fxFlex="20%"></mat-divider>
+</div>
+<mat-divider></mat-divider>
+
+<!-- <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+    <mat-video [autoplay]="true" [preload]="true" [fullscreen]="false" [download]="false" color="accent" spinner="spin">
+        <source matVideoSource src="../../../kurator.mp4" type=" video/mp4 ">
+    </mat-video>
+</div> -->
+
+<!-- <div class="header">
+    <div class="fullscreenVideo">
+        <mat-video [autoplay]="true" [preload]="true" [fullscreen]="true" [download]="false" color="accent" spinner="spin">
+            <source matVideoSource src="/src/assets/images/kurator.mov" type=" video/mp4 ">
+        </mat-video>
+    </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+<!-- more about kurator -->
+<!-- <div class="about" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="40px">
+ <div class="search" >
+<img src="https://i.ibb.co/VwMG8yr/page2.jpg" width="30%">
+<p>SEARCH</p>
+</div>
+<div class="curate" >
+<img src="https://i.ibb.co/D9cCqwC/page2.jpg" width="30%">
+<p>CURATE</p>
+</div>
+<div class="collaborate" >
+<img src="https://i.ibb.co/0Zzj5Tj/page2.jpg" width="30%">
+<p>COLLABORATE</p>
+</div>
+</div> -->
+<!-- Footer of the web page -->
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="navbar-footer-row-1">
+        <p class="mat-subheading-2">&copy; kurator.com</p>
+    </mat-toolbar-row>
+</mat-toolbar>

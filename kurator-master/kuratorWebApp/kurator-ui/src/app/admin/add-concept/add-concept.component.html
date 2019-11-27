@@ -1,0 +1,19 @@
+<form class="dialog-form" [formGroup]="uploaddoc" (ngSubmit)="onAdd()">
+
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter Concept Name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Image</mat-label>
+        <input matInput formControlName="url" placeholder="Enter Url">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" placeholder="Enter Description">
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <button mat-raised-button (click)="onNoClick()">Cancel</button>
+        <button mat-raised-button color="primary">Add</button>
+    </div>
+</form>

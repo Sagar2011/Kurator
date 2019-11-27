@@ -1,0 +1,27 @@
+<section class="edit-form">
+    <h3 align="center">Edit Profile</h3>
+    <form [formGroup]="editProfile">
+        <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="firstName">
+            <mat-error *ngIf="editProfile.get('firstName').errors?.required && editProfile.get('firstName').touched">
+                please enter first name</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input  matInput placeholder="Last Name" formControlName="lastName">
+            <mat-error *ngIf="editProfile.get('lastName').errors?.required && editProfile.get('lastName').touched">
+                please enter last name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input  matInput placeholder="Email" formControlName="email" readonly disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+            <textarea matInput formControlName="aboutUser" placeholder="About"></textarea>
+        </mat-form-field>
+        <section mat-action-button fxLayout="row" fxLayoutAlign="end center">
+            <button mat-raised-button (click)="onCancel()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+        </section>
+    </form>
+</section>

@@ -1,0 +1,155 @@
+version: '3'
+services:
+  neo4j:
+    image: neo4j:latest
+    expose:
+      - 7474
+      - 7687
+    ports:
+      - 7474:7474  #neo4j connection
+      - 7687:7687  #bolt db
+    environment:
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_dbms_shell_enabled=true
+# - NEO4J_AUTH=root:root@123
+    volumes:
+      - $HOME/databases/kuratorSemanticLibrary/data:/data
+      - $HOME/databases/kuratorSemanticLibrary/import:/import
+      - $HOME/databases/kuratorSemanticLibrary/plugins:/plugins
+
+  kurator-eureka-server:
+    build: ./kuratorDiscoveryServer
+    image: kurator-eureka-server:latest
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+    env_file:
+      - ./docker_env/development/kurator-eureka-server.env
+    restart: always
+
+  kurator-config-server:
+    build: ./kuratorConfigServer
+    image: kurator-config-server:latest
+    restart: on-failure
+    expose:
+       - 8888
+    ports:
+       - 8888:8888
+    env_file:
+      - ./docker_env/development/kurator-config-server.env
+
+  kurator-zuul-server:
+ # container_name: netflix-zuul-api-gateway-server
+    build: ./kuratorApiGatewayServer
+     # context: .
+     # dockerfile: Dockerfile
+    image: kurator-zuul-server:latest
+# environment:
+#   - JAVA_OPTS=
+#      -DEUREKA_SERVER=http://eureka-server:8761/eureka
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+    expose:
+       - 8080
+    ports:
+       - 8080:8080
+    env_file:
+      - ./docker_env/development/kurator-zuul-server.env
+
+  kurator-ui-server:
+  # container_name: kurator-ui-service
+    build: ./kuratorWebApp
+      # context: .
+      # dockerfile: Dockerfile
+    image: kurator-ui-server:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      # - kurator-zuul-server
+    expose:
+      - 8200
+    ports:
+      - 8200:8200
+    env_file:
+      - ./docker_env/development/kurator-ui-server.env
+
+  kurator-semantic-service:
+    build: ./kuratorSemanticService
+    image: kurator-semantic-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      # - kurator-zuul-server
+      - neo4j
+    expose:
+       - 8097
+    ports:
+       - 8097:8097
+    env_file:
+      - ./docker_env/development/kurator-semantic-service.env
+
+  kurator-document-service:
+    build: ./kuratorDocumentService
+    image: kurator-document-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      # - kurator-zuul-server
+      - mongo
+    expose:
+      - 8001
+    ports:
+      - 8001:8001
+    env_file:
+      - ./docker_env/development/kurator-document-service.env
+
+  kurator-user-management-service:
+    build: ./kuratorUserManagement
+    image: kurator-user-management-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      # - kurator-zuul-server
+      - mongo
+    expose:
+      - 8515
+    ports:
+      - 8515:8515
+    env_file:
+      - ./docker_env/development/kurator-user-management-service.env
+
+  kurator-indexing-service:
+    build: ./kuratorIndexingService
+    image: kurator-indexing-service:latest
+    restart: on-failure
+    depends_on:
+      - kurator-config-server
+      - mongo
+      - rabbitmq
+    ports:
+      - 8010:8010
+    env_file:
+      - ./docker_env/development/kurator-indexing-service.env
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - $HOME/databases/kuratorMongoDB/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: kurator
+      MONGO_INITDB_ROOT_PASSWORD: KurAt0r
+
+  rabbitmq:
+   image: rabbitmq
+   environment:
+     RABBITMQ_DEFAULT_USER: "kurator"
+     RABBITMQ_DEFAULT_PASS: "KurAt0r"
+   ports:
+     - "15672:15672"
+     - "5672:5672"

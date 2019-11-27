@@ -1,0 +1,46 @@
+.dialog-form {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+
+.dialog-form>* {
+    width: 100%;
+}
+
+.dialog-form {
+    margin-bottom: 20px;
+}
+
+.dialog-form>* {
+    margin: 5px 0;
+}
+
+.visibility .mat-radio-button {
+    margin: 0 12px;
+}
+
+.msg_success {
+    text-decoration-color: darkblue;
+    text-decoration-style: double;
+}
+.example-chip-list {
+    width: 100%;
+  }
+
+  .required {
+    color: yellow;
+  }
+
+  /* label.md-required::before {
+    color:rgb(227, 236, 98);
+} */
+
+/* md-input-container.md-default-theme:not(.md-input-focused):not(.md-input-invalid) label.md-required:after, md-input-container:not(.md-input-focused):not(.md-input-invalid) label.md-required::before {
+    color:rgb(227, 236, 98);
+ } */
+ 
+ /* .form-required {
+    color: yellow !important;
+    } */
+

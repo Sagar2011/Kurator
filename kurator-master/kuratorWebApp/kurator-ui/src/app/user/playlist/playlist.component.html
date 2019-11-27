@@ -1,0 +1,56 @@
+<!-- for desktop view of playlist tabs -->
+<mat-toolbar style="position: sticky;top:0;z-index: 100;">
+  <mat-toolbar-row fxLayout="row " fxLayoutAlign="space-between center">
+    <div fxLayout="row " fxLayoutAlign="space-between center">
+      <div>
+        My Playlist
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class= "message" *ngIf="!status">
+    Currently, you don't have any playlist ,start creating playlist to add your documents
+</div>
+<div *ngIf="status">
+<div fxLayout="row " fxLayoutAlign="end center">
+  <div class="playlist">{{ numberOfPlaylist }} playlists </div>
+</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="space-around start" fxLayoutGap="5px">
+  <!-- <mat-list fxFlex="25%" class="create-playlist" (click)="openDialogCreate()">
+        <mat-list-item>
+            <mat-icon mat-list-icon>create_new_folder</mat-icon>
+            <h4 mat-line>Create Playlist</h4>
+            <button mat-fab class="addURL-fab-button" (click)="openDialogCreate()">
+                <mat-icon>create_new_folder</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list> -->
+
+  <div *ngFor="let play of playlist">
+    <mat-card class="example-card" fxLayout="row" fxLayoutAlign="space-between start">
+      <mat-card-header (click)="openPlaylist(play.playlistName)">
+        <div mat-card-avatar>
+          <mat-icon mat-list-icon>book</mat-icon>
+        </div>
+        <mat-card-title>{{ play.playlistName | titlecase }}</mat-card-title>
+        <mat-card-subtitle>{{
+          play.description | titlecase
+        }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ play.createdOn }}</mat-card-subtitle>
+      </mat-card-header>
+      <div>
+        <button mat-button (click)="removePlaylist(play.playlistName)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="end start">
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+</div>
+<button mat-fab class="add-playlist-fab-button" matTooltip="Create New Playlist" (click)="openDialogCreate()"
+  color="primary">
+  <mat-icon>add</mat-icon>
+</button>

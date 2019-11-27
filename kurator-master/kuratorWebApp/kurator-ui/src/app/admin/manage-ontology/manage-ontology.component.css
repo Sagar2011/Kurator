@@ -1,0 +1,100 @@
+.example-large-box {
+    margin: 0% 2%;
+    padding: 2%;
+    /* height: 500px; */
+    border-radius: 8px;
+}
+
+a {
+    padding-right: 1rem;
+}
+
+.intentList {
+    padding: 2%;
+}
+
+mat-form-field {
+    /* display: inline-block; */
+    /* position: relative; */
+    text-align: left;
+    width: 20%;
+    /* padding: 10px; */
+    /* margin: 10px; */
+}
+
+button {
+    color: white;
+}
+
+
+/* .save-fab-button{
+bottom: 150px;
+right: 60px;
+z-index: 100;
+width:80px;
+height:65px;
+} */
+
+example-button-row button,
+.example-button-row a {
+    margin-right: 50px;
+    size: 100px;
+}
+
+i {
+    cursor: pointer;
+}
+
+
+/* .example-button-row button,
+.example-button-row a {
+/* margin-right: 8px; */
+
+
+/* position: sticky; */
+
+
+/* .example-small-box {
+  height: 100px;
+  width: 100px;
+} */
+
+.divider {
+    width: 625px;
+    display: flex;
+}
+
+
+/* .example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+} */
+
+.intentList {
+    padding: 0%;
+}
+
+.addURL-fab-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 100;
+    margin: 0;
+}
+
+.searchIntent {
+    padding: 2%;
+}
+
+.Ontology {
+    /* position: absolute;  */
+    /* left: 0;  */
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.Ontology::-webkit-scrollbar {
+    display: none;
+}

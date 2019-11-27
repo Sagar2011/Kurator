@@ -1,0 +1,119 @@
+<mat-card class="example-card">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between">
+        <div fxFlex="15%">
+            <!-- <img mat-card-avatar class="example-header-image" src="https://andrewlock.net/content/images/2016/10/icon.png"> -->
+            <mat-icon>public</mat-icon>
+        </div>
+        <div fxFlex="65%">
+            <mat-card-title class="title">{{dataDocs.title}}</mat-card-title>
+            <mat-card-subtitle class="title">{{dataDocs.url}}</mat-card-subtitle>
+        </div>
+        <div fxFlex="10%">
+        </div>
+        <div fxFlex="10%">
+            <!-- <mat-icon *ngIf="!favStatus" matTooltip="favorite document" (click)="addFavourite(dataDocs.documentId)">
+                favorite_border
+            </mat-icon>
+            <mat-icon *ngIf="favStatus" matTooltip="favorite document" (click)="addFavourite(dataDocs.documentId)">
+                favorite
+            </mat-icon> -->
+            <mat-icon (click)="documentView(dataDocs.documentId,dataDocs.title, dataDocs.url, dataDocs.addedBy, dataDocs.confidencerating)">
+                open_in_new
+            </mat-icon>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <div class="flex-container" fxLayout="row wrap" fxLayoutAlign="space-around center">
+            <div fxFlex="25%" *ngIf="!(statusPipeline)">
+                <circle-progress [percent]="intentrating" [radius]="35" [clockwise]="true" [showSubtitle]="false" [outerStrokeWidth]="8" [innerStrokeWidth]="8" [outerStrokeColor]="'#4882c2'" [outerStrokeGradientStopColor]="'#53a9ff'" [innerStrokeColor]="'#e7e8ea'" [animation]="true"
+                    [animationDuration]="300" [showBackground]="false" [showInnerStroke]="false" [units]="'points'">
+                </circle-progress>
+                <mat-chip-list>
+                    <mat-chip matTooltip="intent" selected>
+                        {{title}}
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+            <div fxFlex="25%" *ngIf="statusPipeline">
+                <mat-spinner [diameter]="30"></mat-spinner>
+                <mat-chip-list>
+                    <mat-chip matTooltip="intent" selected>
+                        {{array}}
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+            <mat-divider vertical style="height: 80px"></mat-divider>
+            <div fxFlex="70%">
+                <p>
+                    {{dataDocs.description}}
+                </p>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-chip-list aria-label="Fish selection">
+            <div fxLayout="row wrap" fxLayoutAlign="space-around center" *ngIf="dataDocs.topicToDocument!==undefined">
+                <div *ngFor="let badge of dataDocs.topicToDocument">
+                    <mat-chip matTooltip="click to start following topics" (click)="followTopic(badge)" style="cursor: pointer">{{badge}}
+                    </mat-chip>
+                </div>
+            </div>
+        </mat-chip-list>
+        <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-actions>
+        <div fxLayout="row wrap " fxLayoutAlign="space-between ">
+            <div>
+                <div (click)="openBottomSheet(dataDocs.addedBy)" style="cursor: pointer"><span>{{dataDocs.addedBy}}</span></div>
+                <div><span class="time">{{time}}</span></div>
+            </div>
+            <!-- <div> -->
+            <div>
+                <mat-icon *ngIf="!favStatus" matTooltip="favorite document" (click)="addFavourite(dataDocs.documentId)">
+                    favorite_border
+                </mat-icon>
+                <mat-icon *ngIf="favStatus" matTooltip="favorite document" (click)="addFavourite(dataDocs.documentId)">
+                    favorite
+                </mat-icon>
+            </div>
+            <div>
+                <span>
+                    <img src="https://img.icons8.com/ios/32/000000/applause.png">
+                    <span style="font-size: 15px; ">
+                        {{clap}}
+                    </span>
+                </span>
+            </div>
+            <div>
+
+            </div>
+            <!-- </div> -->
+            <div>
+                <button mat-icon-button [matMenuTriggerFor]="menu " aria-label="Example icon-button with a menu ">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <!-- <button mat-menu-item >
+                        <mat-icon>
+                            open_in_new</mat-icon>
+                        <span>View Document</span>
+                    </button> -->
+                    <button mat-menu-item (click)="flagDocument()">
+                        <mat-icon matTooltip="Flag this document " (click)="flagDocument()">outlined_flag</mat-icon>
+                        <span>Flag document</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon matTooltip="share this document ">share</mat-icon>
+                        <span>Share</span>
+                    </button>
+                    <button mat-menu-item (click)="playlist(dataDocs.documentId)">
+                        <mat-icon matTooltip="add to playlist ">playlist_add</mat-icon>
+                        <span>Add to playlist</span>
+                    </button>
+                </mat-menu>
+            </div>
+
+        </div>
+
+    </mat-card-actions>
+</mat-card>
